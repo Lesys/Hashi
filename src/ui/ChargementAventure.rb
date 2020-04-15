@@ -21,7 +21,7 @@ class ChargementAventure < Gtk::Box
         Vous êtes dans la peau d’un grand architecte qui a pour projet de relier tous les
         continents entre eux. Mais votre tâche ne sera pas si simple: les ponts seront de
         plus en plus compliqués à construire. Prenez votre courage à deux mains et reliez
-            tous ces continents pour faciliter les déplacements à travers le monde.
+        tous ces continents pour faciliter les déplacements à travers le monde.
 
         En avant !
 
