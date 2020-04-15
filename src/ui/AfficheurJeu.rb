@@ -59,7 +59,6 @@ class AfficheurJeu < Gtk::Paned
                 @grille.nbAides = @nbAides
                 @grilleDb.grilleSolution = @grille.to_yaml()
                 GestionBase.changerScore(fenetre.joueur.id, @grilleDb, 0)
-                puts("Sauvegardé")
                 fenetre.finJeu()
             end
         end
@@ -139,9 +138,7 @@ class AfficheurJeu < Gtk::Paned
         box.add(@aidePos)
         @aidePos.signal_connect("clicked") do |widget|
             @aide ||= @grille.obtenirAide()
-            puts("avant " + @nbAides.to_s)
             @nbAides += @aide.niveau == 1 ? 5 : @aide.niveau == 2 ? 3 : 1
-            puts("après " + @nbAides.to_s)
             @afficheurGrille.cercleAide = @aide.caseJeu
             @afficheurGrille.queue_draw()
             @aidePos.sensitive = false
@@ -151,9 +148,7 @@ class AfficheurJeu < Gtk::Paned
         box.add(@aideTech)
         @aideTech.signal_connect("clicked") do |widget|
             @aide ||= @grille.obtenirAide()
-            puts("avant " + @nbAides.to_s)
             @nbAides += @aide.niveau == 1 ? 5 : @aide.niveau == 2 ? 3 : 1
-            puts("après " + @nbAides.to_s)
             @description.text = @aide.description
             @afficheurGrille.queue_draw()
             @aideTech.sensitive = false
@@ -197,7 +192,6 @@ class AfficheurJeu < Gtk::Paned
             @grille.nbAides = @nbAides
             @grilleDb.grilleSolution = @grille.to_yaml()
             GestionBase.changerScore(@fenetre.joueur.id, @grilleDb, 0)
-            puts("Sauvegardé")
             d = Gtk::MessageDialog.new()
             d.text = "Score final: #{GestionBase.recupScore(@fenetre.joueur.id, @grilleDb)}"
             d.message_type = :info
