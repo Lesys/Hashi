@@ -63,7 +63,7 @@ class Monde < Carte
         @bOceanie = @carte.nbEtoiles >= 48
         self.drawRectangleVide(3375, 2120, 950, 550, !@bOceanie)
         if @bOceanie
-            n = @carte.etoiles[1].first(7).inject(:+)
+            n = @carte.etoiles[2].first(7).inject(:+)
             self.drawTexte(3375 + 950/2, 2120 + 550/2, "Océanie : #{n}/21")
         else
             self.drawTexte(3375 + 950/2, 2120 + 550/2, "48 pour débloquer")
@@ -73,7 +73,7 @@ class Monde < Carte
         @bAfrique = @carte.nbEtoiles >= 60
         self.drawRectangleVide(1980, 1600, 850, 900, !@bAfrique)
         if @bAfrique
-          n = @carte.etoiles[1].last(8).first(7).inject(:+)
+          n = @carte.etoiles[2].last(8).first(7).inject(:+)
             self.drawTexte(1980 + 850/2, 1600 + 900/2, "Afrique : #{n}/21")
         else
             self.drawTexte(1980 + 850/2, 1600 + 900/2, "60 pour débloquer")
@@ -84,7 +84,7 @@ class Monde < Carte
             @bAntarctique = @carte.nbEtoiles >= 120
             self.drawRectangleVide(1980, 3000, 850, 200, !@bAntarctique)
             if @bAntarctique
-                n = @carte.etoiles[1].last.inject(:+)
+                n = @carte.etoiles[2].last.inject(:+)
                 self.drawTexte(1980 + 850/2, 3000 + 200/2, "Antarctique : #{n}/3")
             else
                 self.drawTexte(1980 + 850/2, 3000 + 200/2, "120 pour débloquer")
