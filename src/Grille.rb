@@ -715,7 +715,7 @@ class Grille
 
 
                 if( self.testArchipel2(c) )
-                    aides3.push( Aides.creer(3,c,"Lors de la création d’un pont sur une case comportant 2 voisins et lui restant 2 ponts à construire, un archipel peut être formé, ce qui bloquerait le jeu; il est donc possible de déterminer où créer un pont pour ne pas arriver à cette situation."))
+                    aides3.push( Aides.creer(3,c,"Lors de la création de 2 ponts sur une case comportant 2 voisins et lui restant 2 ponts à construire, un archipel peut être formé, ce qui bloquerait le jeu; il est donc possible de déterminer où créer un pont pour ne pas arriver à cette situation."))
 
 # Si lors de la création de deux ponts sur une case avec 2 voisins et 2 ponts restant max a construire la suite du jeu est bloqué car une île complette est formé(suite de case sans triangle restant relié par des ponts) , il est possible de déterminer ou créer au moins un pont") )
                 end
