@@ -26,7 +26,7 @@ class Antarctique < Carte
     end
 
     def dessinerEtiquettes()
-        ajouterEtiquette(Etiquette.new(2450, 3250, 90, 30, @carte.etoiles[2][8], @g[8]))
+        ajouterEtiquette(Etiquette.new(2450, 3250, 90, 30, @carte.etoiles[2][14], @g[14]))
         super()
     end
 end
