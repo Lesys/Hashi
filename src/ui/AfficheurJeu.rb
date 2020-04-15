@@ -119,10 +119,9 @@ class AfficheurJeu < Gtk::Paned
         @boxHypothese.add(@boutonAnnulerHypothese)
         @boxHypothese.add(@boutonValiderHypothese)
         @hypothese.add(@boxHypothese)
-        puts(@grille.hypothese)
         boxVerticale.add(@hypothese)
         @hypothese.show_all()
-        @hypothese.visible_child = @grille.hypothese == true ? @boxHypothese : @boutonHypotese
+        @hypothese.visible_child = (@grille.hypothese == true ? @boxHypothese : @boutonHypothese)
 
         @reinitialiser = Gtk::Button.new(:label => "Réinitialiser")
         boxVerticale.add(@reinitialiser)
