@@ -215,30 +215,21 @@ class GestionBase
 				end
 
 				GrilleDb.where(difficultes_id: idDifficulte, modes_id: idMode).offset(nbDebut).limit(nbGrilles).each do |grilleDb|
-#puts grille.id
-#joue = nil
 					begin
 						joue = Joue.where([ "joueurs_id = ? AND grille_dbs_id = ?", idJoueur, grilleDb.id ]).first
 					rescue
 						joue = nil
 					end
-#joue.each { |j| puts "Joue: #{j}" }
+
 					if (joue != nil)
-#p joue
 						grilleDb.grilleSolution = joue.grilleSer
 					else
-#						grille = grilleDb.grilleSolution
-#						grilleDb.grilleSolution = YAML.load(grilleDb.grilleSolution)
 						grille = grilleDb.grilleSolution
-#puts "Joue:  #{joue == nil}"
-#p grille
+
 						grille2 = YAML.load(grille)
-#puts "Grille2: "
-#puts grille2
+
 						grille = Grille.creer(grille2.tabCase, grille2.hauteur, grille2.largeur, grille2)
-#puts "Grille: "
-#puts grille
-#						grille.tabLien.each { |lien| grille.supprimerLien(lien) }
+
 						grilleDb.grilleSolution = YAML.dump(grille)
 #:niveau => difficulte
 						Joue.create( :joueurs_id => idJoueur, :grille_dbs_id => grilleDb.id, :grilleSer => grilleDb.grilleSolution, :score => 0, :terminee => false )
@@ -265,7 +256,7 @@ class GestionBase
 		grilleDb = grilles.select { |grilleDb| !GestionBase.grilleTerminee?(idJoueur, grilleDb) }.sample
 
 		if grilleDb == nil
-			puts "Aucune grille non terminée, on prend parmi les terminées et on réinitialise"
+			#puts "Aucune grille non terminée, on prend parmi les terminées et on réinitialise"
 			grilleDb = grilles.sample
 
 			# Réinitialisation de la grille
@@ -275,8 +266,6 @@ class GestionBase
 
 			# Enregistrement de la grille
 			GestionBase.changerScore(idJoueur, grilleDb, 0)
-		else
-			puts "Grille trouvée"
 		end
 
 		return grilleDb
@@ -308,7 +297,7 @@ class GestionBase
 				raise ("Grille non terminée") if (!grille.grilleFinie)
 				score = grilleDb.tempsMax + (3 * (grilleDb.tempsMoyen - tempsReel)) - nbAides + 500 - (3 * (7 - idDifficulte))
 				terminee = true
-				puts "score: #{score}, scoreMax: #{grilleDb.scoreMax}, tempsMoyen: #{grilleDb.tempsMoyen}"
+				#puts "score: #{score}, scoreMax: #{grilleDb.scoreMax}, tempsMoyen: #{grilleDb.tempsMoyen}"
 			rescue # timer == 0?
 #				puts "Timer: #{tempsReel}"
 				score = 0

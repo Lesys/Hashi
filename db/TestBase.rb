@@ -25,8 +25,8 @@ class TestBase
 		Mode.create( :mode_jeu => "Classe")
 		Mode.create( :mode_jeu => "Aventure")
 		
-		unJoueur = GestionBase.ajouterJoueur("corentin")
-		unJoueur2 = GestionBase.ajouterJoueur("alexis")
+#		unJoueur = GestionBase.ajouterJoueur("corentin")
+#		unJoueur2 = GestionBase.ajouterJoueur("alexis")
 		
 		# Ajoute toutes les grilles de différentes difficultés à la base
 		fichiers.each do |difficulte|
@@ -34,9 +34,9 @@ class TestBase
 			SerGrille.transformeSerial2(difficulte)
 			tabGrille = SerGrille.deserialiseVide(difficulte)
 			idDifficulte = Difficulte.find_by_niveau(difficulte).id
-			puts "diff: #{idDifficulte}"
+			puts "difficulté: #{idDifficulte}"
 			idMode = 1
-puts "nb grilles: #{tabGrille.length}"
+			puts "nb grilles: #{tabGrille.length}"
 #puts tabGrille
 			tabGrille.each do |grille|
 #puts "idMode: #{idMode}"
@@ -81,7 +81,7 @@ puts "nb grilles: #{tabGrille.length}"
 #puts "#{grilleDb.grilleSolution}"
 			grille = YAML.load(grilleDb.grilleSolution)
 #puts "#{grille}"
-			grille.clicTriangle(grille.tabCase[0], 1)
+#			grille.clicTriangle(grille.tabCase[0], 1)
 			puts "ID: #{grilleDb.id}, Hauteur: #{grille.hauteur}, largeur: #{grille.largeur}, classe: #{grille.class}, scoreMax: #{grilleDb.scoreMax}, tempsMoyen: #{grilleDb.tempsMoyen}"
 #			puts "Solution: Hauteur: #{grille.grilleRes.hauteur}, largeur: #{grille.grilleRes.largeur}, classe: #{grille.grilleRes.class}"
 #puts "avant grilleDb ser: #{YAML.dump(grille).largeur}"
@@ -115,6 +115,8 @@ puts "nb grilles: #{tabGrille.length}"
 	def TestBase.updateScore
                 fichiers = ["Facile", "Moyen", "Difficile"]
 
+		puts "Attribution des scores maximum et temps moyen de résolution..."
+
 		GrilleDb.all.each do |grilleDb|
                         idDifficulte = grilleDb.difficultes_id
 			grille = YAML.load(grilleDb.grilleSolution)
@@ -125,7 +127,7 @@ puts "nb grilles: #{tabGrille.length}"
 			tempsMoyen = 3.6 * x * x - 34 * x + 120
 			tempsMax = 3 * tempsMoyen
 			scoreMax = tempsMax + 500 - (3 * (7 - idDifficulte))
-puts "x: #{x}, scoreMax: #{scoreMax}, tempsMoyen: #{tempsMoyen}"
+			#puts "x: #{x}, scoreMax: #{scoreMax}, tempsMoyen: #{tempsMoyen}"
 			grilleDb.update(scoreMax: scoreMax, tempsMoyen: tempsMoyen, tempsMax: tempsMax)
 		end
 	end
@@ -136,7 +138,7 @@ puts "x: #{x}, scoreMax: #{scoreMax}, tempsMoyen: #{tempsMoyen}"
 
 end
 
-#TestBase.genererBase
+TestBase.genererBase
 #TestBase.updateScore
 #TestBase.reinitialiser
-puts GestionBase.recupGrilleAleatoire(2, 1, 2)
+#puts GestionBase.recupGrilleAleatoire(2, 1, 2)
