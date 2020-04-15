@@ -14,6 +14,7 @@ class ChargementAventure < Gtk::Box
         self.margin = 15
 
         view = Gtk::TextView.new()
+        view.wrap_mode = :word
         view.buffer.text = 
 "   
     Histoire :
