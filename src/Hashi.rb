@@ -61,7 +61,6 @@ class Hashi < Gtk::Window
         if u
           @joueur = u
           self.remove(@courant)
-          puts("Utilisateur connecté: #{usr}")
           self.lancerMenu()
         end
     end
@@ -81,7 +80,6 @@ class Hashi < Gtk::Window
         elsif GestionBase.ajouterJoueur(usr)
           @joueur = GestionBase.recupJoueur(usr)
           self.remove(@courant)
-          puts("Utilisateur créé: #{usr}")
           self.lancerMenu()
         else
           d = Gtk::MessageDialog.new()
